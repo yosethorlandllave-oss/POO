@@ -1,0 +1,285 @@
+package pe.edu.upeu.algoritmosgui;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox; // AGREGADO
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Spinner;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class matrizGUI extends Application {
+    Label label;
+    GridPane grid;
+
+//-------------------------------------------///
+    String formaSeleccionada = "Forma 5";
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        label = new Label("Ejemplo matrices");
+
+        grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+        Label tam = new Label("Tamaño (n):");
+        Spinner<Integer> spinner = new Spinner<>(2,30,5);
+        Label numI = new Label("Numero de inicio:");
+        Spinner<Integer> spinner2 = new Spinner<>(0,60,0);
+        Label lblForma = new Label("Forma:");
+        ComboBox<String> comboForma = new ComboBox<>();
+        comboForma.getItems().addAll(
+                "Forma 5",
+                "Forma 6",
+                "Forma 7",
+                "Forma 8",
+                "Forma 9",
+                "Forma 10",
+                "Forma 11",
+                "Forma 12",
+                "Forma 13",
+                "Forma 14",
+                "Forma 17",
+                "Forma 18"
+        );
+
+        comboForma.setValue("Forma 5");
+
+
+        //  BOTÓN ELEGIR FORMA----------
+        
+
+        Button btForma = new Button("Elegir Forma");
+        btForma.setOnAction(e -> {
+            formaSeleccionada = comboForma.getValue();
+            label.setText(
+                    "Forma seleccionada: " + formaSeleccionada
+            );
+
+        });
+
+        Button bt1 = new Button("Generar Matriz");
+        bt1.setOnAction(e -> {
+            int tm = spinner.getValue();
+            int numInicio = spinner2.getValue();
+            switch (formaSeleccionada) {
+                case "Forma 5":
+                    rellenarMf5(tm,numInicio);
+                    break;
+                case "Forma 6":
+                    rellenarMf6(tm,numInicio);
+                    break;
+                case "Forma 7":
+                    rellenarMf7(tm,numInicio);
+                    break;
+                case "Forma 8":
+                    rellenarMf8(tm,numInicio);
+                    break;
+                case "Forma 9":
+                    rellenarMf9(tm,numInicio);
+                    break;
+                case "Forma 10":
+                    rellenarMf10(tm,numInicio);
+                    break;
+                case "Forma 11":
+                    rellenarMf11(tm,numInicio);
+                    break;
+                case "Forma 12":
+                    rellenarMf12(tm,numInicio);
+                    break;
+                case "Forma 13":
+                    rellenarMf13(tm,numInicio);
+                    break;
+                case "Forma 14":
+                    rellenarMf14(tm,numInicio);
+                    break;
+                case "Forma 17":
+                    rellenarMf17(tm,numInicio);
+                    break;
+                case "Forma 18":
+                    rellenarMf18(tm,numInicio);
+                    break;
+            }
+
+        });
+
+
+       
+        HBox hb1 = new HBox(10,tam,spinner,numI,spinner2,lblForma,comboForma,btForma,bt1);
+        rellenarMf5(spinner.getValue(),spinner2.getValue());
+        VBox vb1 = new VBox(10,label,hb1,grid);
+        ScrollPane sp = new ScrollPane(vb1);
+        primaryStage.setScene(new Scene(sp));
+        primaryStage.setTitle("Matriz-Formas");
+        primaryStage.show();
+    }
+
+    public void rellenarMf5(int tm, int numI){
+        grid.getChildren().clear();
+        for (int f=0;f<tm;f++){
+            for (int c=tm-1;c>=tm-1-f;c--){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf6(int tm, int numI){
+        grid.getChildren().clear();
+        for(int f=0;f<tm;f++){
+            for(int c=0;c<=f;c++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf7(int tm, int numI){
+        grid.getChildren().clear();
+        for(int f=0;f<tm;f++){
+            for(int c=0;c<tm-f;c++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf8(int tm, int numI){
+        grid.getChildren().clear();
+        for(int f=0;f<tm;f++){
+            for(int c=f;c<tm;c++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf9(int tm, int numI){
+        grid.getChildren().clear();
+        for(int f=0;f<tm;f++){
+            for(int c=tm-1-f;c<tm;c++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf10(int tm, int numI){
+        grid.getChildren().clear();
+        int num = numI;
+        for(int f=0;f<tm;f++){
+            num += f;
+            int aux=num;
+            for(int c=0;c<=f;c++){
+                Button bt=new Button(String.valueOf(aux));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                aux--;
+            }
+            num++;
+        }
+    }
+
+    public void rellenarMf11(int tm, int numI){
+        grid.getChildren().clear();
+        int inicio=numI;
+        for(int f=0;f<tm;f++){
+            int cantidad=tm-f;
+            int ultimo=inicio+cantidad-1;
+            for(int c=0;c<cantidad;c++){
+                Button bt=new Button(String.valueOf(ultimo-c));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+            }
+            inicio += cantidad;
+        }
+    }
+
+    public void rellenarMf12(int tm, int numI){
+        grid.getChildren().clear();
+        int inicio=numI;
+        for(int f=0;f<tm;f++){
+            int cantidad=tm-f;
+            int ultimo=inicio+cantidad-1;
+            for(int c=f;c<tm;c++){
+                Button bt=new Button(
+                        String.valueOf(ultimo-(c-f))
+                );
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+            }
+            inicio += cantidad;
+        }
+    }
+
+    public void rellenarMf13(int tm, int numI){
+        grid.getChildren().clear();
+        for(int c=0;c<tm;c++){
+            for(int f=0;f<tm-c;f++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf14(int tm, int numI){
+        grid.getChildren().clear();
+        for(int c=0;c<tm;c++){
+            for(int f=0;f<=c;f++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+
+    public void rellenarMf17(int tm, int numI){
+        grid.getChildren().clear();
+        int total = tm*(tm+1)/2;
+        int numeroFinal = numI + total - 1;
+        for(int c=tm-1;c>=0;c--){
+            for(int f=0;f<=c;f++){
+                Button bt=new Button(
+                        String.valueOf(numeroFinal)
+                );
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numeroFinal--;
+            }
+        }
+    }
+
+    public void rellenarMf18(int tm, int numI){
+        grid.getChildren().clear();
+        for(int c=tm-1;c>=0;c--){
+            for(int f=0;f<tm-c;f++){
+                Button bt=new Button(String.valueOf(numI));
+                bt.setMinSize(48,42);
+                grid.add(bt,c,f);
+                numI++;
+            }
+        }
+    }
+}
