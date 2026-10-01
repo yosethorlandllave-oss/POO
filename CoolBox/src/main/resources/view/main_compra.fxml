@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.CompraController">
+ <children><VBox spacing="10" AnchorPane.bottomAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8" AnchorPane.topAnchor="8">
+  <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+  <Label text="Gestionar Compra" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1f3397;"/>
+  <GridPane hgap="8" vgap="8">
+   <columnConstraints><ColumnConstraints minWidth="100"/><ColumnConstraints hgrow="ALWAYS"/><ColumnConstraints minWidth="80"/><ColumnConstraints hgrow="ALWAYS"/></columnConstraints>
+   <Label text="Proveedor / razón social" GridPane.rowIndex="0"/><TextField fx:id="txtProveedor" promptText="Nombre del proveedor" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+   <Label text="RUC / documento" GridPane.columnIndex="2" GridPane.rowIndex="0"/><TextField fx:id="txtDocumentoProveedor" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+   <Label text="Fecha" GridPane.rowIndex="1"/><DatePicker fx:id="dpFechaCompra" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+  </GridPane>
+  <TitledPane text="Agregar productos" expanded="true" collapsible="false"><content><VBox spacing="8">
+   <HBox spacing="8" alignment="CENTER_LEFT"><ComboBox fx:id="cbxProducto" promptText="Seleccione producto" prefWidth="220"/>
+    <TextField fx:id="txtCantidad" promptText="Cantidad" prefWidth="100"/><TextField fx:id="txtPrecioUnitario" promptText="Precio unitario" prefWidth="120"/>
+    <TextField fx:id="txtSubtotal" promptText="Subtotal" editable="false" prefWidth="120"/><Button text="Agregar" onAction="#agregarDetalle"/><Button text="Quitar detalle" onAction="#quitarDetalle"/>
+   </HBox>
+   <TableView fx:id="tablaDetalles" prefHeight="150"><columns>
+    <TableColumn fx:id="colProductoDetalle" text="Producto" prefWidth="300"/><TableColumn fx:id="colCantidadDetalle" text="Cantidad" prefWidth="100"/>
+    <TableColumn fx:id="colPrecioDetalle" text="Precio unitario" prefWidth="130"/><TableColumn fx:id="colSubtotalDetalle" text="Subtotal" prefWidth="130"/>
+   </columns></TableView>
+   <HBox alignment="CENTER_RIGHT" spacing="8"><Label text="Total de compra:"/><Label fx:id="lblTotalCompra" text="0.00" style="-fx-font-size: 16px; -fx-font-weight: bold;"/></HBox>
+  </VBox></content></TitledPane>
+  <HBox spacing="8"><Button text="Guardar" onAction="#guardarCompra"/><Button text="Editar" onAction="#editarCompra"/><Button text="Nuevo / Limpiar" onAction="#nuevaCompra"/><Button text="Eliminar" onAction="#eliminarCompra"/><Label fx:id="lblMensaje" wrapText="true" HBox.hgrow="ALWAYS"/></HBox>
+  <Separator/><HBox spacing="8" alignment="CENTER_LEFT"><Label text="Buscar proveedor"/><TextField fx:id="txtBuscar" promptText="Nombre o documento" onAction="#buscarCompras"/><Button text="Buscar" onAction="#buscarCompras"/><Button text="Listar todas" onAction="#listarCompras"/></HBox>
+  <TableView fx:id="tablaCompras" VBox.vgrow="ALWAYS"><columns>
+   <TableColumn fx:id="colIdCompra" text="ID" prefWidth="70"/><TableColumn fx:id="colProveedorCompra" text="Proveedor" prefWidth="280"/>
+   <TableColumn fx:id="colFechaCompra" text="Fecha" prefWidth="150"/><TableColumn fx:id="colTotalCompra" text="Total" prefWidth="140"/>
+  </columns></TableView>
+ </VBox></children>
+</AnchorPane>
