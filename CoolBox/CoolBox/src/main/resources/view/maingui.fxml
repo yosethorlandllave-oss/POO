@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Ventana principal: barra superior roja, menú lateral y área de contenido.
+     capaModal aloja las confirmaciones y el menú superpuesto en pantallas angostas. -->
+<BorderPane fx:id="bp" styleClass="raiz" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.MainGuiController">
+   <top>
+      <HBox fx:id="barraSuperior" alignment="CENTER_LEFT" spacing="8.0" styleClass="barra-superior" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnMenu" mnemonicParsing="false" styleClass="btn-barra" accessibleText="Contraer menú" />
+            <Label fx:id="lblMarca" styleClass="marca" text="CoolBox" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblUsuario" styleClass="usuario" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <StackPane fx:id="capaModal" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="cuerpo">
+               <children>
+                  <ScrollPane fx:id="panelMenu" fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="panel-menu">
+                     <content>
+                        <VBox fx:id="menuLateral" styleClass="menu-lateral" accessibleText="Menú principal" />
+                     </content>
+                  </ScrollPane>
+                  <StackPane fx:id="contenido" styleClass="contenido" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

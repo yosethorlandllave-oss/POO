@@ -1,0 +1,735 @@
+/* =====================================================================
+   CoolBox — panel administrativo
+   Barra superior roja, menú lateral gris claro, contenido blanco,
+   tablas con encabezado gris oscuro y acciones compactas por fila.
+   ===================================================================== */
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -rojo: #dd4b39;
+    -rojo-oscuro: #c23321;
+    -azul: #3c8dbc;
+    -azul-oscuro: #367fa9;
+    -naranja: #f39c12;
+    -naranja-oscuro: #e08e0b;
+    -verde: #00a65a;
+    -verde-oscuro: #008d4c;
+    -gris-menu: #f4f4f5;
+    -gris-borde: #d2d6de;
+    -gris-texto: #444444;
+    -encabezado-tabla: #3a3f44;
+    -fx-focus-color: #3c8dbc;
+    -fx-faint-focus-color: #3c8dbc22;
+}
+
+.raiz {
+    -fx-background-color: white;
+}
+
+/* ---------------------------------------------------------- barra superior */
+
+.barra-superior {
+    -fx-background-color: -rojo;
+    -fx-padding: 0 14 0 6;
+    -fx-min-height: 50px;
+    -fx-pref-height: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 4, 0, 0, 1);
+}
+
+.btn-barra {
+    -fx-background-color: transparent;
+    -fx-background-radius: 3;
+    -fx-padding: 8 10 8 10;
+    -fx-cursor: hand;
+}
+
+.btn-barra .icono {
+    -fx-background-color: white;
+}
+
+.btn-barra:hover,
+.btn-barra:focused {
+    -fx-background-color: -rojo-oscuro;
+}
+
+.marca {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 4;
+}
+
+.usuario {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-graphic-text-gap: 6;
+    -fx-padding: 6 10 6 10;
+    -fx-background-color: rgba(0, 0, 0, 0.12);
+    -fx-background-radius: 3;
+}
+
+.usuario .icono {
+    -fx-background-color: white;
+}
+
+/* ---------------------------------------------------------- menú lateral */
+
+.panel-menu,
+.panel-menu > .viewport {
+    -fx-background-color: -gris-menu;
+    -fx-background-insets: 0;
+}
+
+.panel-menu {
+    -fx-border-color: transparent -gris-borde transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 0;
+}
+
+.menu-lateral {
+    -fx-background-color: -gris-menu;
+    -fx-padding: 8 0 12 0;
+    -fx-spacing: 1;
+}
+
+.menu-grupo {
+    -fx-text-fill: #8a8f98;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 16 4 16;
+}
+
+.item-menu {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 0 3;
+    -fx-text-fill: #333333;
+    -fx-font-size: 13px;
+    -fx-padding: 9 12 9 13;
+    -fx-graphic-text-gap: 10;
+    -fx-cursor: hand;
+}
+
+.item-menu .icono {
+    -fx-background-color: #6b7078;
+}
+
+.item-menu:hover,
+.item-menu:focused {
+    -fx-background-color: #e7e8ea;
+}
+
+.item-menu.activo {
+    -fx-background-color: white;
+    -fx-border-color: -rojo;
+    -fx-text-fill: -rojo;
+    -fx-font-weight: bold;
+}
+
+.item-menu.activo .icono {
+    -fx-background-color: -rojo;
+}
+
+.menu-lateral.mini .item-menu {
+    -fx-alignment: center;
+    -fx-padding: 11 0 11 0;
+}
+
+/* ---------------------------------------------------------- contenido */
+
+.contenido,
+.scroll-contenido,
+.scroll-contenido > .viewport {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+}
+
+.scroll-contenido {
+    -fx-padding: 0;
+}
+
+.pagina {
+    -fx-background-color: white;
+    -fx-padding: 12 18 18 18;
+}
+
+.migas {
+    -fx-spacing: 4;
+    -fx-alignment: center-left;
+}
+
+.migas .hyperlink {
+    -fx-text-fill: -azul;
+    -fx-font-size: 12px;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-graphic-text-gap: 4;
+}
+
+.migas .hyperlink .icono {
+    -fx-background-color: -azul;
+}
+
+.migas .label {
+    -fx-text-fill: #777777;
+    -fx-font-size: 12px;
+}
+
+.migas .miga-actual {
+    -fx-text-fill: #444444;
+}
+
+.migas .miga-actual .icono {
+    -fx-background-color: #444444;
+}
+
+.miga-separador {
+    -fx-text-fill: #aaaaaa;
+}
+
+.titulo-pagina {
+    -fx-font-size: 22px;
+    -fx-text-fill: #333333;
+}
+
+.caja {
+    -fx-background-color: white;
+    -fx-border-color: #e3e3e3;
+    -fx-border-width: 3 1 1 1;
+    -fx-border-color: -gris-borde #e3e3e3 #e3e3e3 #e3e3e3;
+    -fx-border-radius: 3;
+    -fx-padding: 12;
+}
+
+.caja-titulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.nota {
+    -fx-text-fill: #777777;
+    -fx-font-size: 12px;
+}
+
+/* ---------------------------------------------------------- botones */
+
+.btn {
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+    -fx-padding: 6 12 6 12;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 6;
+}
+
+.btn .icono {
+    -fx-background-color: white;
+}
+
+.btn-primary {
+    -fx-background-color: -azul;
+    -fx-text-fill: white;
+}
+
+.btn-primary:hover {
+    -fx-background-color: -azul-oscuro;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #2e6d92;
+}
+
+.btn-success {
+    -fx-background-color: -verde;
+    -fx-text-fill: white;
+}
+
+.btn-success:hover {
+    -fx-background-color: -verde-oscuro;
+}
+
+.btn-success:pressed {
+    -fx-background-color: #007a41;
+}
+
+.btn-danger {
+    -fx-background-color: -rojo;
+    -fx-text-fill: white;
+}
+
+.btn-danger:hover {
+    -fx-background-color: -rojo-oscuro;
+}
+
+.btn-danger:pressed {
+    -fx-background-color: #a82b1c;
+}
+
+.btn-warning {
+    -fx-background-color: -naranja;
+    -fx-text-fill: white;
+}
+
+.btn-warning:hover {
+    -fx-background-color: -naranja-oscuro;
+}
+
+.btn-warning:pressed {
+    -fx-background-color: #c87f0a;
+}
+
+.btn-default {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #dddddd;
+    -fx-text-fill: #444444;
+}
+
+.btn-default .icono {
+    -fx-background-color: #444444;
+}
+
+.btn-default:hover {
+    -fx-background-color: #e7e7e7;
+}
+
+.btn:focused {
+    -fx-effect: dropshadow(gaussian, #3c8dbc88, 4, 0.6, 0, 0);
+}
+
+/* ---------------------------------------------------------- barra de herramientas del listado */
+
+.barra-herramientas {
+    -fx-padding: 0 0 2 0;
+}
+
+.selector-cantidad {
+    -fx-pref-width: 76px;
+}
+
+.buscador {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 2;
+    -fx-padding: 0 0 0 8;
+    -fx-spacing: 2;
+    -fx-min-width: 180px;
+}
+
+.buscador .icono {
+    -fx-background-color: #888888;
+}
+
+.buscador:focus-within {
+    -fx-border-color: -azul;
+}
+
+.campo-busqueda,
+.campo-busqueda:focused {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 5 8 5 6;
+}
+
+.filtro {
+    -fx-pref-width: 175px;
+}
+
+/* ---------------------------------------------------------- tabla */
+
+.tabla {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.tabla:focused {
+    -fx-background-insets: 0;
+    -fx-border-color: #b9c7d3;
+}
+
+.tabla .column-header-background,
+.tabla .column-header-background .filler {
+    -fx-background-color: -encabezado-tabla;
+}
+
+.tabla .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #50565c transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-size: 34px;
+}
+
+.tabla .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 8 0 8;
+}
+
+.tabla .column-header.col-numero .label {
+    -fx-alignment: center-right;
+}
+
+.tabla .column-header.col-acciones .label {
+    -fx-alignment: center;
+}
+
+.tabla .column-header .arrow {
+    -fx-background-color: white;
+}
+
+.tabla .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #e6e6e6 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: #333333;
+}
+
+.tabla .table-row-cell:empty {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+}
+
+.tabla .table-row-cell:filled:hover {
+    -fx-background-color: #f7f7f7;
+}
+
+.tabla .table-row-cell:filled:selected {
+    -fx-background-color: #fbeae7;
+}
+
+.tabla .table-cell {
+    -fx-padding: 0 8 0 8;
+    -fx-alignment: center-left;
+    -fx-text-fill: #333333;
+    -fx-border-color: transparent;
+}
+
+.tabla .table-cell.col-numero,
+.tabla .col-numero.table-cell {
+    -fx-alignment: center-right;
+}
+
+.tabla-vacia {
+    -fx-text-fill: #888888;
+    -fx-font-size: 13px;
+}
+
+.btn-accion {
+    -fx-min-width: 28px;
+    -fx-pref-width: 28px;
+    -fx-min-height: 24px;
+    -fx-pref-height: 24px;
+    -fx-padding: 0;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.btn-accion .icono {
+    -fx-background-color: white;
+}
+
+.btn-ver {
+    -fx-background-color: -azul;
+}
+
+.btn-ver:hover {
+    -fx-background-color: -azul-oscuro;
+}
+
+.btn-editar {
+    -fx-background-color: -naranja;
+}
+
+.btn-editar:hover {
+    -fx-background-color: -naranja-oscuro;
+}
+
+.btn-eliminar {
+    -fx-background-color: -rojo;
+}
+
+.btn-eliminar:hover {
+    -fx-background-color: -rojo-oscuro;
+}
+
+.btn-accion:focused {
+    -fx-effect: dropshadow(gaussian, #222222aa, 3, 0.7, 0, 0);
+}
+
+/* ---------------------------------------------------------- pie: contador y paginación */
+
+.pie-tabla {
+    -fx-padding: 2 0 0 0;
+}
+
+.contador {
+    -fx-text-fill: #555555;
+}
+
+.paginacion {
+    -fx-spacing: -1;
+}
+
+.paginacion .boton-pagina {
+    -fx-background-color: white;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: -azul;
+    -fx-padding: 5 11 5 11;
+    -fx-cursor: hand;
+}
+
+.paginacion .boton-pagina:hover {
+    -fx-background-color: #eeeeee;
+}
+
+.paginacion .boton-pagina.activa {
+    -fx-background-color: -rojo;
+    -fx-border-color: -rojo;
+    -fx-text-fill: white;
+}
+
+.paginacion .boton-pagina:disabled {
+    -fx-opacity: 1;
+    -fx-text-fill: #aaaaaa;
+    -fx-cursor: default;
+}
+
+.pagina-puntos {
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-padding: 5 8 5 8;
+    -fx-text-fill: #777777;
+}
+
+/* ---------------------------------------------------------- formularios */
+
+.formulario .campo {
+    -fx-spacing: 4;
+}
+
+.formulario .campo > .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-font-size: 12px;
+}
+
+.formulario .text-field,
+.formulario .combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 2;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 2;
+    -fx-pref-height: 32px;
+}
+
+.formulario .text-field:focused,
+.formulario .combo-box:focused {
+    -fx-border-color: -azul;
+}
+
+.formulario .campo-error,
+.formulario .campo-error:focused {
+    -fx-border-color: -rojo;
+    -fx-border-width: 1.5;
+}
+
+.error-campo {
+    -fx-text-fill: #c23321;
+    -fx-font-size: 12px;
+}
+
+.acciones-formulario {
+    -fx-padding: 6 0 0 0;
+    -fx-alignment: center-left;
+}
+
+.tooltip-error {
+    -fx-background-color: #b71c1c;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4;
+}
+
+/* ---------------------------------------------------------- detalle */
+
+.detalle {
+    -fx-vgap: 0;
+}
+
+.detalle-etiqueta,
+.detalle-valor {
+    -fx-padding: 8 0 8 0;
+    -fx-border-color: transparent transparent #eeeeee transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.detalle-etiqueta {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.detalle-valor {
+    -fx-text-fill: #222222;
+}
+
+/* ---------------------------------------------------------- avisos */
+
+.aviso {
+    -fx-padding: 9 10 9 12;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-border-width: 1;
+}
+
+.aviso-texto {
+    -fx-font-size: 13px;
+}
+
+.aviso-exito {
+    -fx-background-color: #dff0d8;
+    -fx-border-color: #c8e5bc;
+}
+
+.aviso-exito .aviso-texto {
+    -fx-text-fill: #2b612d;
+}
+
+.aviso-exito .icono {
+    -fx-background-color: #2b612d;
+}
+
+.aviso-error {
+    -fx-background-color: #f2dede;
+    -fx-border-color: #e4b9b9;
+}
+
+.aviso-error .aviso-texto {
+    -fx-text-fill: #8a2c2a;
+}
+
+.aviso-error .icono {
+    -fx-background-color: #a94442;
+}
+
+.aviso-info {
+    -fx-background-color: #d9edf7;
+    -fx-border-color: #bce8f1;
+}
+
+.aviso-info .aviso-texto {
+    -fx-text-fill: #245269;
+}
+
+.aviso-info .icono {
+    -fx-background-color: #31708f;
+}
+
+.aviso-cerrar {
+    -fx-background-color: transparent;
+    -fx-padding: 4;
+    -fx-cursor: hand;
+}
+
+.aviso-cerrar .icono {
+    -fx-background-color: #555555;
+}
+
+.aviso-cerrar:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ---------------------------------------------------------- confirmación modal */
+
+.modal-fondo {
+    -fx-background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-tarjeta {
+    -fx-background-color: white;
+    -fx-background-radius: 4;
+    -fx-border-color: -rojo transparent transparent transparent;
+    -fx-border-width: 3 0 0 0;
+    -fx-border-radius: 4 4 0 0;
+    -fx-padding: 16 18 14 18;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 18, 0, 0, 4);
+}
+
+.modal-titulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.modal-mensaje {
+    -fx-text-fill: #444444;
+    -fx-font-size: 13px;
+}
+
+.modal-pie {
+    -fx-padding: 6 0 0 0;
+}
+
+/* ---------------------------------------------------------- inicio */
+
+.tarjeta {
+    -fx-background-color: white;
+    -fx-border-color: #e3e3e3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 4, 0, 0, 1);
+}
+
+.tarjeta-cabecera {
+    -fx-padding: 14 16 10 16;
+}
+
+.tarjeta-numero {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.tarjeta-texto {
+    -fx-text-fill: #666666;
+}
+
+.tarjeta-icono {
+    -fx-background-color: #e8b4ad;
+}
+
+.tarjeta-enlace {
+    -fx-background-color: #f7f7f7;
+    -fx-border-color: #eeeeee transparent transparent transparent;
+    -fx-background-radius: 0 0 3 3;
+    -fx-text-fill: -azul;
+    -fx-padding: 6;
+    -fx-cursor: hand;
+}
+
+.tarjeta-enlace:hover,
+.tarjeta-enlace:focused {
+    -fx-background-color: #eeeeee;
+}
+
+/* ---------------------------------------------------------- general */
+
+.tooltip {
+    -fx-font-size: 12px;
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}

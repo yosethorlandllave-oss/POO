@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Vista compartida por Marcas, Categorías y Unidades de medida.
+     No declara fx:controller: MainGuiController asigna el controlador del catálogo elegido. -->
+<VBox fx:id="miContenedor" minWidth="0.0" spacing="10.0" styleClass="pagina" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="migas" alignment="CENTER_LEFT" styleClass="migas" />
+      <Label fx:id="lblTitulo" styleClass="titulo-pagina" />
+      <VBox fx:id="contenedorAviso" />
+      <StackPane alignment="TOP_LEFT" minWidth="0.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox fx:id="panelListado" maxHeight="-Infinity" minWidth="0.0" styleClass="caja" />
+
+            <VBox fx:id="panelFormulario" maxHeight="-Infinity" minWidth="0.0" managed="false" spacing="12.0" styleClass="caja" visible="false">
+               <children>
+                  <Label fx:id="lblTituloFormulario" styleClass="caja-titulo" />
+                  <Label styleClass="nota" text="Los campos marcados con * son obligatorios." />
+                  <FlowPane fx:id="camposFormulario" hgap="16.0" vgap="12.0" styleClass="formulario">
+                     <children>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label fx:id="lblNombre" />
+                              <TextField fx:id="txtNombre" onAction="#validarFormulario" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+                  <HBox spacing="8.0" styleClass="acciones-formulario">
+                     <children>
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#validarFormulario" styleClass="btn,btn-primary" text="Guardar" />
+                        <Button mnemonicParsing="false" onAction="#cancelarFormulario" styleClass="btn,btn-default" text="Cancelar" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <VBox fx:id="panelDetalle" maxHeight="-Infinity" minWidth="0.0" managed="false" spacing="12.0" styleClass="caja" visible="false">
+               <children>
+                  <Label fx:id="lblTituloDetalle" styleClass="caja-titulo" />
+                  <GridPane fx:id="gridDetalle" hgap="16.0" styleClass="detalle" />
+                  <HBox fx:id="accionesDetalle" spacing="8.0" styleClass="acciones-formulario" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

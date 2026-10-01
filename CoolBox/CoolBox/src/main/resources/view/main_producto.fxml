@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- Módulo Productos: listado, formulario y detalle en la misma página.
+     El listado (TablaPaginada) y el detalle los arma CrudController. -->
+<VBox fx:id="miContenedor" minWidth="0.0" spacing="10.0" styleClass="pagina" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.ProductoController">
+   <children>
+      <HBox fx:id="migas" alignment="CENTER_LEFT" styleClass="migas" />
+      <Label fx:id="lblTitulo" styleClass="titulo-pagina" text="Productos" />
+      <VBox fx:id="contenedorAviso" />
+      <StackPane alignment="TOP_LEFT" minWidth="0.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox fx:id="panelListado" maxHeight="-Infinity" minWidth="0.0" styleClass="caja" />
+
+            <VBox fx:id="panelFormulario" maxHeight="-Infinity" minWidth="0.0" managed="false" spacing="12.0" styleClass="caja" visible="false">
+               <children>
+                  <Label fx:id="lblTituloFormulario" styleClass="caja-titulo" text="Nuevo producto" />
+                  <Label styleClass="nota" text="Los campos marcados con * son obligatorios." />
+                  <FlowPane fx:id="camposFormulario" hgap="16.0" vgap="12.0" styleClass="formulario">
+                     <children>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Tipo de producto *" />
+                              <ComboBox fx:id="cbxTipoProducto" maxWidth="1.7976931348623157E308" promptText="Seleccione" accessibleText="Tipo de producto" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Nombre del producto *" />
+                              <TextField fx:id="txtNombreProducto" promptText="Ej.: Televisor 50 pulgadas" accessibleText="Nombre del producto" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Precio unitario (S/) *" />
+                              <TextField fx:id="txtPUnit" promptText="0.00" accessibleText="Precio unitario en soles" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Precio anterior (S/)" />
+                              <TextField fx:id="txtPUnitOld" promptText="0 si no aplica" accessibleText="Precio anterior en soles" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Utilidad *" />
+                              <TextField fx:id="txtUtilidad" promptText="0.00" accessibleText="Utilidad" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Stock *" />
+                              <TextField fx:id="txtStock" promptText="0" accessibleText="Stock" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Stock anterior" />
+                              <TextField fx:id="txtStockOld" promptText="0 si no aplica" accessibleText="Stock anterior" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Categoría *" />
+                              <ComboBox fx:id="cbxCategoria" maxWidth="1.7976931348623157E308" promptText="Seleccione" accessibleText="Categoría" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Marca *" />
+                              <ComboBox fx:id="cbxMarca" maxWidth="1.7976931348623157E308" promptText="Seleccione" accessibleText="Marca" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="campo">
+                           <children>
+                              <Label text="Unidad de medida *" />
+                              <ComboBox fx:id="cbxUnidMedida" maxWidth="1.7976931348623157E308" promptText="Seleccione" accessibleText="Unidad de medida" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+                  <HBox spacing="8.0" styleClass="acciones-formulario">
+                     <children>
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#validarFormulario" styleClass="btn,btn-primary" text="Guardar" />
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarFormulario" styleClass="btn,btn-default" text="Cancelar" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <VBox fx:id="panelDetalle" maxHeight="-Infinity" minWidth="0.0" managed="false" spacing="12.0" styleClass="caja" visible="false">
+               <children>
+                  <Label fx:id="lblTituloDetalle" styleClass="caja-titulo" />
+                  <GridPane fx:id="gridDetalle" hgap="16.0" styleClass="detalle" />
+                  <HBox fx:id="accionesDetalle" spacing="8.0" styleClass="acciones-formulario" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</VBox>
