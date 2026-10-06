@@ -11,6 +11,7 @@
         </processorPath>
         <module name="SysVentas (1)" />
         <module name="SysVentas" />
+        <module name="SysVentas (2)" />
       </profile>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
