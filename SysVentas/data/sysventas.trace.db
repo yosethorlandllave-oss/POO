@@ -1,0 +1,27 @@
+2026-10-09 10:57:13.898565-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 10:57:22.260889-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 10:57:33.679561-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 10:57:41.468497-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 10:57:43.323357-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 10:57:47.559112-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 10:58:27.117423-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 11:00:36.058963-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-09 11:00:36.910627-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
