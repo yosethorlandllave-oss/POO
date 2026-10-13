@@ -25,3 +25,9 @@ SELECT * FROM marca [42104-240]
 2026-10-09 11:00:36.910627-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
 SELECT * FROM marca [42104-240]
+2026-10-13 13:23:17.692882-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]
+2026-10-13 13:23:19.484595-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MARCA" not found (this database is empty); SQL statement:
+SELECT * FROM marca [42104-240]

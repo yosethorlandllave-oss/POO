@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,9 +15,6 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-
-
-//solo acepta 1 conecion //
 /**
  * Configuración de la base de datos H2 (embebida, en archivo o en memoria) con pool HikariCP.
  *

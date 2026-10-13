@@ -35,6 +35,7 @@ public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> i
 
     @Override
     public List<Producto> findAll() {
+
         return productoRepository.findAll();
     }
 

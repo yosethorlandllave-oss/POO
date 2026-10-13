@@ -9,32 +9,36 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.LoginController">
    <children>
-      <VBox layoutX="14.0" layoutY="3.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0">
+      <VBox layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <AnchorPane>
                <children>
-                  <Circle fill="#ff1f1f" layoutX="34.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#00ff22" layoutX="83.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" layoutX="133.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Label graphicTextGap="7.0" layoutX="187.0" layoutY="20.0" prefHeight="28.0" prefWidth="199.0" text="Login SysVentas">
+                  <Circle fill="#ff4f1f" layoutX="34.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#3aff1f" layoutX="84.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" layoutX="135.0" layoutY="34.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="210.0" layoutY="16.0" text="Login SysVentas">
                      <font>
-                        <Font name="System Bold" size="19.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <padding>
-                        <Insets right="5.0" />
-                     </padding></Label>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
                </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
             </AnchorPane>
-            <AnchorPane style="-fx-background-radius: 1; -fx-background-color: 2;">
+            <AnchorPane>
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="111.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <image>
-                        <Image url="@../img/icons.png" />
+                        <Image url="@../img/secrecy-icon.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <GridPane>
+            <GridPane vgap="6.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,19 +48,32 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <AnchorPane prefHeight="89.0" prefWidth="663.0" style="-fx-background-radius: 1; -fx-border-color: 2;" GridPane.columnSpan="2147483647">
+                  <AnchorPane style="-fx-border-radius: 3; -fx-border-color: #b5abd1;" GridPane.columnSpan="2147483647">
                      <children>
-                        <Label layoutX="51.0" layoutY="7.0" prefHeight="17.0" prefWidth="50.0" text="Usuario " />
-                        <TextField layoutX="193.0" layoutY="4.0" />
+                        <Label layoutX="74.0" layoutY="6.0" text="Usuario" />
+                        <TextField fx:id="txtUsuario" layoutX="151.0" layoutY="4.0" />
                      </children>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
                   </AnchorPane>
-                  <AnchorPane prefHeight="30.0" prefWidth="371.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                  <AnchorPane style="-fx-background-radius: 3; -fx-border-color: #b5abd1;" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                      <children>
-                        <TextField layoutX="193.0" layoutY="2.0" />
-                        <Label layoutX="52.0" layoutY="6.0" prefHeight="17.0" prefWidth="50.0" text="Clave" />
+                        <Label layoutX="74.0" layoutY="8.0" text="Clave" />
+                        <PasswordField fx:id="txtClave" layoutX="151.0" layoutY="3.0" prefHeight="22.0" prefWidth="148.0">
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </PasswordField>
                      </children>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
                   </AnchorPane>
                </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
             </GridPane>
             <AnchorPane>
                <children>
@@ -69,12 +86,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" text="Ingresar">
                            <GridPane.margin>
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" GridPane.columnIndex="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cerrar" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin>
@@ -85,6 +102,5 @@
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane />
    </children>
 </AnchorPane>

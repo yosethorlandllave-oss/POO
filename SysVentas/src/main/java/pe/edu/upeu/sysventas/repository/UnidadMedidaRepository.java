@@ -11,26 +11,23 @@ import java.sql.SQLException;
 public class UnidadMedidaRepository extends AbstractJpaRepository<UnidMedida, Long>{
 
     @Override
-    protected String getTableName() {
-        return "unid_medida";
-    }
+    protected String getTableName() {return "unid_medida";}
 
     @Override
-    protected String getPkColumn() {
-        return "id_unidad";
-    }
+    protected String getPkColumn() {return "id_unidad";}
 
     @Override
     protected UnidMedida insert(Connection connection, UnidMedida entity) throws SQLException {
         long id = executeInsertGetKey(connection,
-                "INSERT INTO UnidMedida(nombre) VALUES(?)", entity.getNombreMedida());
+                "INSERT INTO unid_medida(nombre_medida) VALUES(?)",
+                entity.getNombreMedida());
         entity.setIdUnidad(id);
         return entity;
     }
 
     @Override
     protected UnidMedida updateRow(Connection connection, UnidMedida entity) throws SQLException {
-        executeUpdate(connection, "UPDATE categoria SET nombre=? WHERE id_unidad=?",
+        executeUpdate(connection, "UPDATE unid_medida SET nombre_medida=? WHERE id_unidad=?",
                 entity.getNombreMedida(),
                 entity.getIdUnidad()
         ); return entity;

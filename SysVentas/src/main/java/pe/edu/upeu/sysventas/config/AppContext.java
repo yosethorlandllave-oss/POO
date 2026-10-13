@@ -39,6 +39,8 @@ public class AppContext {
         registrar(UnidadMedidaRepository.class,  new UnidadMedidaRepository());
         registrar(ProductoRepository.class,      new ProductoRepository());
 
+        registrar(UsuarioRepository.class, new UsuarioRepository());
+
     }
 
     // CAPA 2 — SERVICIOS
@@ -51,6 +53,7 @@ public class AppContext {
         registrar(IProductoService.class,     new ProductoServiceImp(    getBean(ProductoRepository.class)));
         registrar(IUnidadMedidaService.class, new UnidadMedidaServiceImp(getBean(UnidadMedidaRepository.class)));
 
+        registrar(IUsuarioService.class, new UsuarioServiceImp(getBean(UsuarioRepository.class)));
 
     }
 
@@ -68,6 +71,7 @@ public class AppContext {
                         getBean(IProductoService.class),
                         getBean(IUnidadMedidaService.class)));
 
+        registrar(LoginController.class, new LoginController(getBean(IUsuarioService.class)));
     }
 
     // API del contenedor — estos dos métodos son todo lo que hace la DI
