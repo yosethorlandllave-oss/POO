@@ -1,0 +1,263 @@
+/* =========================================================
+   COOLBOX - ESTILO NAVIDEÑO
+   Colores: rojo vino, verde y blanco
+   ========================================================= */
+
+.root {
+
+    -fx-font-family: "Segoe UI", "Arial";
+    -fx-font-size: 13px;
+    -fx-background-color: #FFFFFF;
+    -fx-accent: #2E7D4F;
+    -fx-focus-color: #2E7D4F;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ---------- Textos ---------- */
+.label {
+    -fx-text-fill: #5A1520;
+}
+
+/* ---------- Campos de texto y combos ---------- */
+.text-field, .password-field, .combo-box, .date-picker, .text-area {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #C9D9CE;
+    -fx-border-width: 1.2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: #2B2B2B;
+    -fx-prompt-text-fill: #8A8A8A;
+}
+
+.text-field:focused, .password-field:focused, .combo-box:focused,
+.date-picker:focused, .text-area:focused {
+    -fx-border-color: #2E7D4F;
+    -fx-border-width: 2;
+}
+
+.text-field:disabled, .text-field:readonly {
+    -fx-background-color: #E8F2EB;
+}
+
+.text-area .content {
+    -fx-background-color: #FFFFFF;
+}
+
+.combo-box .arrow-button, .date-picker .arrow-button {
+    -fx-background-color: #1E5631;
+    -fx-background-radius: 0 4 4 0;
+}
+
+.combo-box .arrow, .date-picker .arrow {
+    -fx-background-color: #FFFFFF;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1E5631;
+}
+
+.combo-box-popup .list-cell:hover,
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #2E7D4F;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ---------- Botones ---------- */
+.button {
+    -fx-background-color: #7B1E2B;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 6 14 6 14;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #2E7D4F;
+}
+
+.button:pressed {
+    -fx-background-color: #5A1520;
+}
+
+.button:disabled {
+    -fx-opacity: 0.55;
+}
+
+/* Botones de editar y eliminar dentro de las tablas */
+.button.table-button, .button.edit-button {
+    -fx-background-color: #2E7D4F;
+    -fx-padding: 3 8 3 8;
+}
+
+.button.delete-button {
+    -fx-background-color: #7B1E2B;
+    -fx-padding: 3 8 3 8;
+}
+
+.button.edit-button:hover, .button.delete-button:hover {
+    -fx-background-color: #5A1520;
+}
+
+/* ---------- Tablas ---------- */
+.table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1E5631;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-table-cell-border-color: #E3ECE6;
+}
+
+.table-view .column-header-background,
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: #1E5631;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #FFFFFF;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #F6E7E9;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #E8F2EB;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #7B1E2B;
+}
+
+.table-view .table-row-cell:selected .table-cell {
+    -fx-text-fill: #FFFFFF;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #2B2B2B;
+}
+
+/* ---------- Barra de menú ---------- */
+.menu-bar {
+    -fx-background-color: linear-gradient(to right, #5A1520, #7B1E2B);
+    -fx-padding: 3 6 3 6;
+}
+
+.menu-bar .menu .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.menu-bar .menu:hover, .menu-bar .menu:showing {
+    -fx-background-color: #2E7D4F;
+}
+
+.context-menu {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1E5631;
+}
+
+.menu-item .label {
+    -fx-text-fill: #5A1520;
+}
+
+.menu-item:focused, .menu-item:hover {
+    -fx-background-color: #2E7D4F;
+}
+
+.menu-item:focused .label, .menu-item:hover .label {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ---------- Pestañas ---------- */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #E8F2EB;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #1E5631;
+    -fx-background-radius: 6 6 0 0;
+    -fx-padding: 4 12 4 12;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #7B1E2B;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #2E7D4F;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #7B1E2B;
+    -fx-border-width: 3 0 0 0;
+}
+
+/* ---------- Paneles y scroll ---------- */
+.scroll-pane, .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: #E8F2EB;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #2E7D4F;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #7B1E2B;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #7B1E2B;
+}
+
+.titled-pane > .title > .text {
+    -fx-fill: #FFFFFF;
+}
+
+/* ---------- Check, radio y otros ---------- */
+.check-box .box, .radio-button .radio {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1E5631;
+    -fx-border-radius: 3;
+}
+
+.check-box:selected .box, .radio-button:selected .radio {
+    -fx-background-color: #2E7D4F;
+}
+
+.check-box:selected .mark, .radio-button:selected .dot {
+    -fx-background-color: #FFFFFF;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #2E7D4F;
+}
+
+.tooltip {
+    -fx-background-color: #7B1E2B;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ---------- Botones del style.css base ---------- */
+.btn-primary, .btn-danger { -fx-background-color: #7B1E2B; -fx-text-fill: #FFFFFF; }
+.btn-success { -fx-background-color: #2E7D4F; -fx-text-fill: #FFFFFF; }
+.btn-primary:hover, .btn-danger:hover, .btn-success:hover { -fx-background-color: #5A1520; }

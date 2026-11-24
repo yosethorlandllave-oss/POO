@@ -11,11 +11,7 @@ import java.util.Optional;
 
 public class UsuarioRepository extends AbstractJpaRepository<Usuario, Long> {
     private static final String SELECT_JOIN =
-
-            //eeste ele la consulta //
             "SELECT u.*, p.nombre AS perfil_nombre, p.codigo AS perfil_codigo " +
-
-                    //este usuario es un alias  , join se une con perfil sobre el id del usuario y perfil sea igual a pe //
                     "FROM usuario u JOIN perfil p ON u.id_perfil = p.id_perfil ";
     @Override
     protected String getTableName() {return "usuario";}
@@ -47,9 +43,6 @@ public class UsuarioRepository extends AbstractJpaRepository<Usuario, Long> {
                 .idPerfil(perfil)
                 .build();
     }
-
-    //metodos adicionales //
-
     public Optional<Usuario> buscarUsuario(String usuario) {
         return executeQueryOne(SELECT_JOIN + "WHERE u.usuario = ?",
                 usuario);

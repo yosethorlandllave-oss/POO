@@ -1,0 +1,378 @@
+/* =====================================================
+   ESTILO COOLBOX - "La noche estrellada" (Van Gogh)
+   Azul noche, amarillo dorado, blanco y negro
+   Autora: Yazmin Vargas Sumerinde - G2 UPeU Juliaca
+   ===================================================== */
+@import url("style.css");
+
+/* ---------- Colores base ----------
+   Azul noche   #1E3A8A   Azul profundo #0F1F47
+   Dorado       #E8B923   Amarillo luz  #FFF4C2
+   Negro        #0A0D14   Blanco        #FFFFFF          */
+.root {
+    -fx-base: #FFFFFF;
+    -fx-background: #FFFFFF;
+    -fx-control-inner-background: #FFFFFF;
+    -fx-accent: #1E3A8A;
+    -fx-focus-color: #E8B923;
+    -fx-faint-focus-color: #E8B92333;
+    -fx-selection-bar: #FFF4C2;
+    -fx-selection-bar-non-focused: #FFF9DD;
+    -fx-font-family: "Segoe UI", "System";
+    -fx-font-size: 13px;
+    -fx-background-color: #FFFFFF;
+}
+
+/* ---------- Textos ---------- */
+.label {
+    -fx-text-fill: #0A0D14;
+}
+
+/* ---------- Campos de texto y combos ---------- */
+.text-field, .combo-box, .date-picker, .text-area {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #C9D3EA;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-prompt-text-fill: #8A93AB;
+}
+
+.text-field:focused, .combo-box:focused, .date-picker:focused, .text-area:focused {
+    -fx-border-color: #E8B923;
+    -fx-border-width: 2px;
+}
+
+.text-field:readonly {
+    -fx-background-color: #EEF2FB;
+}
+
+.combo-box .arrow-button, .date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow, .date-picker .arrow {
+    -fx-background-color: #1E3A8A;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1E3A8A;
+}
+
+.combo-box-popup .list-cell:hover, .combo-box-popup .list-cell:selected {
+    -fx-background-color: #1E3A8A;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ---------- Botones ---------- */
+.button {
+    -fx-background-color: #1E3A8A;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-color: transparent transparent #E8B923 transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-padding: 6 14 6 14;
+    -fx-graphic-text-gap: 7;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #0F1F47;
+    -fx-text-fill: #FFE58A;
+}
+
+.button:pressed {
+    -fx-background-color: #0A1230;
+}
+
+/* Cancelar / Cerrar en negro */
+.button:cancel, .button.btn-cancelar {
+    -fx-background-color: #0A0D14;
+    -fx-border-color: transparent;
+}
+
+.button:cancel:hover, .button.btn-cancelar:hover {
+    -fx-background-color: #2A2F3A;
+}
+
+.button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* ---------- Tablas ---------- */
+.table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #0F1F47;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 6px;
+}
+
+.table-view .column-header-background,
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: #0F1F47;
+}
+
+.table-view .column-header-background {
+    -fx-border-color: transparent transparent #E8B923 transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #E3E8F4 transparent;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #F8FAFE;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #EEF2FB;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #FFF4C2;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #0A0D14;
+}
+
+/* ---------- Barra de menú ---------- */
+.menu-bar {
+    -fx-background-color: #0F1F47;
+    -fx-background-image: url("../img/vg-banner.png");
+    -fx-background-size: cover;
+    -fx-border-color: transparent transparent #E8B923 transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-padding: 4 8 4 8;
+}
+
+.menu-bar .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.menu-bar .menu:hover, .menu-bar .menu:showing {
+    -fx-background-color: rgba(10, 13, 20, 0.55);
+}
+
+.menu-bar .menu:hover .label, .menu-bar .menu:showing .label {
+    -fx-text-fill: #FFE58A;
+}
+
+.context-menu {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #0F1F47;
+}
+
+.menu-item .label {
+    -fx-text-fill: #0A0D14;
+}
+
+.menu-item:focused, .menu-item:hover {
+    -fx-background-color: #1E3A8A;
+}
+
+.menu-item:focused .label, .menu-item:hover .label {
+    -fx-text-fill: #FFE58A;
+}
+
+/* ---------- Pestañas ---------- */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #EEF2FB;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 6 6 0 0;
+    -fx-border-color: #C9D3EA;
+    -fx-border-radius: 6 6 0 0;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #1E3A8A;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #0F1F47;
+    -fx-border-color: transparent transparent #E8B923 transparent;
+    -fx-border-width: 0 0 3 0;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #FFF4C2;
+}
+
+.tab-pane .tab:selected:hover {
+    -fx-background-color: #1E3A8A;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: #FFFFFF;
+}
+
+/* ---------- Barras de desplazamiento ---------- */
+.scroll-bar {
+    -fx-background-color: #FFFFFF;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #C9D3EA;
+    -fx-background-radius: 6px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #1E3A8A;
+}
+
+/* ---------- Otros ---------- */
+.check-box:selected .box, .radio-button:selected .radio {
+    -fx-background-color: #1E3A8A;
+}
+
+.check-box:selected .mark, .radio-button:selected .dot {
+    -fx-background-color: #FFE58A;
+}
+
+.titled-pane .title {
+    -fx-background-color: #0F1F47;
+}
+
+.titled-pane .title .text {
+    -fx-fill: #FFFFFF;
+}
+
+.tooltip {
+    -fx-background-color: #0A0D14;
+    -fx-text-fill: #FFE58A;
+    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+}
+
+/* =====================================================
+   INSPIRACIÓN "LA NOCHE ESTRELLADA"
+   ===================================================== */
+
+/* ---------- Pantalla de inicio ---------- */
+.bienvenida {
+    -fx-background-image: url("../img/vg-bienvenida.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-padding: 30;
+}
+
+.tarjeta-bienvenida {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 16;
+    -fx-border-color: #E8B923;
+    -fx-border-width: 2;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(5, 8, 20, 0.6), 26, 0.2, 0, 8);
+}
+
+.titulo-bienvenida {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F1F47;
+}
+
+.subtitulo-bienvenida {
+    -fx-font-size: 15px;
+    -fx-text-fill: #B8860B;
+    -fx-font-weight: bold;
+}
+
+.pregunta-bienvenida {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0A0D14;
+}
+
+.consejo-bienvenida {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7488;
+    -fx-text-alignment: center;
+}
+
+/* Botones grandes de acceso rápido */
+.button.acceso-rapido {
+    -fx-min-width: 150px;
+    -fx-min-height: 74px;
+    -fx-font-size: 14px;
+    -fx-graphic-text-gap: 4;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #0F1F47;
+    -fx-border-color: #1E3A8A;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.button.acceso-rapido:hover {
+    -fx-background-color: #0F1F47;
+    -fx-text-fill: #FFE58A;
+    -fx-border-color: #E8B923;
+    -fx-effect: dropshadow(gaussian, rgba(232, 185, 35, 0.5), 14, 0.2, 0, 3);
+}
+
+/* ---------- Títulos de cada pantalla ---------- */
+.titulo-pantalla {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F1F47;
+    -fx-border-color: transparent transparent #E8B923 transparent;
+    -fx-border-width: 0 0 3 0;
+    -fx-padding: 0 0 4 0;
+}
+
+/* ---------- Mensaje cuando la tabla está vacía ---------- */
+.tabla-vacia {
+    -fx-text-fill: #8A93AB;
+    -fx-font-style: italic;
+    -fx-font-size: 13px;
+}
+
+/* ---------- Login ---------- */
+.login-cabecera {
+    -fx-background-color: #0F1F47;
+}
+
+.login-titulo {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(5, 8, 20, 0.9), 10, 0.5, 0, 2);
+}
+
+.login-subtitulo {
+    -fx-font-size: 13px;
+    -fx-text-fill: #FFE58A;
+    -fx-effect: dropshadow(gaussian, rgba(5, 8, 20, 0.9), 6, 0.5, 0, 1);
+}
+
+.login-ayuda {
+    -fx-text-fill: #1E3A8A;
+    -fx-font-size: 13px;
+}
+
+.login-campo {
+    -fx-border-color: #C9D3EA;
+    -fx-border-radius: 8;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-padding: 2;
+}

@@ -4,17 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum TipoProducto {
-    PRODUCTO("Producto"),
+    PRODUCTO("Prducto"),
     PREPARADO("Preparado"),
     SERVICIO("Servicio");
 
     String descripcion;
     TipoProducto(String descripcion){
-        this.descripcion = descripcion;
-    }
-
-    @Override
-    public String toString() {
-        return descripcion;
+        this.descripcion=descripcion;
     }
 }

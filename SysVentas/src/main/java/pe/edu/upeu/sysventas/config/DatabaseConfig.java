@@ -52,7 +52,12 @@ public final class DatabaseConfig {
         HikariDataSource ds = createDataSource(url, props);
         try {
             if (Boolean.parseBoolean(props.getProperty("db.ddl.auto", "true"))) {
-                runScript(ds, props.getProperty("db.ddl.script", DEFAULT_SCRIPT));
+                // Se pueden indicar varios scripts separados por coma: primero las tablas, luego los datos
+                for (String script : props.getProperty("db.ddl.script", DEFAULT_SCRIPT).split(",")) {
+                    if (!script.isBlank()) {
+                        runScript(ds, script.trim());
+                    }
+                }
             }
         } catch (RuntimeException e) {
             ds.close();

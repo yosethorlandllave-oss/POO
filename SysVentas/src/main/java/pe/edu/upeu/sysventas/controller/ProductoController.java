@@ -19,7 +19,7 @@ import pe.edu.upeu.sysventas.components.ToltipCustom;
 import pe.edu.upeu.sysventas.dto.ComboBoxOption;
 import pe.edu.upeu.sysventas.enums.TipoProducto;
 import pe.edu.upeu.sysventas.model.Producto;
-import pe.edu.upeu.sysventas.service.ICategoriaService;
+import pe.edu.upeu.sysventas.service.ICategoriasService;
 import pe.edu.upeu.sysventas.service.IMarcaService;
 import pe.edu.upeu.sysventas.service.IProductoService;
 import pe.edu.upeu.sysventas.service.IUnidadMedidaService;
@@ -30,7 +30,7 @@ import java.util.function.Consumer;
 @RequiredArgsConstructor
 public class ProductoController {
     private final IMarcaService ms;
-    private final ICategoriaService cs;
+    private final ICategoriasService cs;
     private final IProductoService ps;
     private final IUnidadMedidaService us;
 
@@ -52,8 +52,10 @@ public class ProductoController {
 
     private Validator validator;
     ObservableList<Producto> listarProducto;
+    private static final double STOCK_MINIMO = 10;
     Producto formulario;
     Long idProductoCE = 0L;
+    Long idNuevo = 0L;   // id del último producto nuevo (se pinta de verde)
 
     private final ToltipCustom ttc=new ToltipCustom();
 
@@ -77,6 +79,7 @@ public class ProductoController {
         columns.put("Nombre Producto", new ColumnInfo("nombre", 200.0));
         columns.put("P. Unitario", new ColumnInfo("pu", 150.0));
         columns.put("Utilidad", new ColumnInfo("utilidad", 100.0));
+        columns.put("Stock", new ColumnInfo("stock", 80.0));
         columns.put("Marca", new ColumnInfo("idMarca.nombre", 200.0));
         columns.put("Categoria", new ColumnInfo("idCategoria.nombre", 200.0));
 
@@ -84,14 +87,44 @@ public class ProductoController {
         Consumer<Producto> deleteAction = producto -> {
 
             stage = (Stage) miContenedor.getScene().getWindow();
-            ps.delete(producto.getIdProducto());
             double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
-            Toast.showToast(stage, "Se eliminó correctamente!!", 2000, w, h);
+            try {
+                ps.delete(producto.getIdProducto());
+                Toast.showToast(stage, "Se eliminó correctamente!!", 2000, w, h);
+            } catch (Exception ex) {
+                // Si el producto ya se usó en una venta o carrito, la base de datos no deja borrarlo
+                Toast.showToast(stage, "No se puede eliminar: el producto ya tiene ventas registradas", 3000, w, h);
+            }
+            clearForm();
             listar();
         };
 
         tableViewHelper.addColumnsInOrderWithSize(tableView, columns, updateAction, deleteAction);
         tableView.setTableMenuButtonVisible(true);
+        // Colores: verde = nuevo, rojo = stock menor a 10, azul = precio mayor a 1000
+        tableView.setRowFactory(tv -> new TableRow<Producto>() {
+            @Override
+            protected void updateItem(Producto item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setStyle("");
+                } else if (item.getIdProducto() != null && item.getIdProducto().equals(idNuevo)) {
+                    setStyle("-fx-background-color: #d4edda;");   // verde: producto nuevo
+                } else if (item.getStock() != null && item.getStock() < STOCK_MINIMO) {
+                    setStyle("-fx-background-color: #f8d7da;");   // rojo: stock bajo
+                } else if (item.getPu() != null && item.getPu() > 1000) {
+                    setStyle("-fx-background-color: #cfe2ff;");   // azul: precio mayor a 1000
+                } else {
+                    setStyle("");
+                }
+            }
+        });
+        // Filtra la tabla por nombre mientras se escribe
+        txtFiltroDato.textProperty().addListener((obs, o, n) -> {
+            String t = n == null ? "" : n.toLowerCase().trim();
+            tableView.setItems(t.isEmpty() ? listarProducto
+                    : listarProducto.filtered(p -> p.getNombre().toLowerCase().contains(t)));
+        });
         listar();
 
     }
@@ -99,10 +132,15 @@ public class ProductoController {
 
     public void listar() {
         try {
-            tableView.getItems().clear();
-            listarProducto = FXCollections.observableArrayList(ps.findAll());
-            tableView.getItems().addAll(listarProducto);
-            //txtFiltroDato.textProperty().addListener((obs, o, n) -> filtrarProductos(n));
+            listarProducto = FXCollections.observableArrayList(ps.finAll());
+            tableView.setItems(listarProducto);
+            // Alerta de stock bajo (Eydam): cuenta los productos con menos de 10 unidades
+            long bajos = listarProducto.stream().filter(p -> p.getStock() != null && p.getStock() < STOCK_MINIMO).count();
+            if (bajos > 0) {
+                lbnMsg.setText("Atención: " + bajos + " producto(s) con stock bajo (menos de 10). Se marcan en rojo.");
+                lbnMsg.setStyle("-fx-text-fill: #c0392b; -fx-font-size: 13px;");
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -111,7 +149,6 @@ public class ProductoController {
 
     @FXML
     public void validarFormulario() {
-        System.out.println("Holassss Formm");
         formulario = new Producto();
         formulario.setNombre(txtNombreProducto.getText());
         formulario.setPu(parseDoubleSafe(txtPUnit.getText()));
@@ -181,7 +218,7 @@ public class ProductoController {
 
         cbxTipoProducto.getSelectionModel().select(
                 cbxTipoProducto.getItems().stream()
-                        .filter(m -> m.getKey() == producto.getTipoProducto().name())
+                        .filter(m -> m.getKey().equals(producto.getTipoProducto().name()))
                         .findFirst().orElse(null));
 
         cbxMarca.getSelectionModel().select(
@@ -247,15 +284,27 @@ public class ProductoController {
         lbnMsg.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
         limpiarError();
         double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
-        if (idProductoCE > 0L) {
-            formulario.setIdProducto(idProductoCE);
-            ps.update(idProductoCE, formulario);
-            Toast.showToast(stage, "Se actualizó correctamente!!", 2000, w, h);
-        } else {
-            ps.save(formulario);
-            Toast.showToast(stage, "Se guardó correctamente!!", 2000, w, h);
+        try {
+            if (idProductoCE > 0L) {
+                formulario.setIdProducto(idProductoCE);
+                ps.update(idProductoCE, formulario);
+                Toast.showToast(stage, "Se actualizó correctamente!!", 2000, w, h);
+            } else {
+                ps.save(formulario);
+                Toast.showToast(stage, "Se guardó correctamente!!", 2000, w, h);
+            }
+            boolean esNuevo = idProductoCE == 0L;
+            clearForm(); listar();
+            if (esNuevo) {
+                idNuevo = listarProducto.stream().mapToLong(Producto::getIdProducto).max().orElse(0L);
+                tableView.refresh();
+            }
+        } catch (Exception ex) {
+            // Antes, si algo fallaba, no se mostraba nada. Ahora se avisa en pantalla.
+            lbnMsg.setText("No se pudo guardar: " + ex.getMessage());
+            lbnMsg.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
+            System.out.println("Error al guardar producto: " + ex.getMessage());
         }
-        clearForm(); listar();
     }
 
     public void limpiarError() {

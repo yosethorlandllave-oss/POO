@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.ReporteController" styleClass="pantalla" prefWidth="1000.0" prefHeight="650.0">
+   <children>
+      <VBox AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="16.0" spacing="14.0">
+         <children>
+            <VBox spacing="2.0" minHeight="-Infinity">
+               <children>
+                  <Label styleClass="migas" text="Inicio  ›  Reportes"/>
+                  <Label text="Reportes en PDF" styleClass="titulo-pantalla"/>
+                  <Label text="Elige un reporte, ajusta los filtros y presiona Generar. Luego puedes guardarlo o imprimirlo."/>
+               </children>
+            </VBox>
+            <StackPane fx:id="contenedor" styleClass="tarjeta" VBox.vgrow="ALWAYS"/>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

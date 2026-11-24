@@ -8,10 +8,17 @@ module pe.edu.upeu.sysventas {
     requires jakarta.validation;
 
     requires java.sql;
+    requires com.h2database;
     requires java.naming;
     requires org.slf4j;
     requires com.zaxxer.hikari;
+    requires javafx.graphics;
+    requires java.prefs;
+    requires org.jsoup;
     requires java.desktop;
+    requires escpos.coffee;
+    requires com.github.librepdf.openpdf;
+    requires org.apache.pdfbox;
 
 
     opens pe.edu.upeu.sysventas to javafx.fxml;

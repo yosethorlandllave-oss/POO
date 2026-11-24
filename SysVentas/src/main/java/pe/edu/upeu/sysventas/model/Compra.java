@@ -1,33 +1,29 @@
 package pe.edu.upeu.sysventas.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 import java.time.LocalDate;
 import java.util.List;
 
-
-@Builder
+// Compra de mercadería a un proveedor (Yoseth). Hereda serie, número, precios e IGV de DocumentoComercial.
+@Data
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Compra extends DocumentoComercial {
-
-    //private Long idCompra;
-    //private Double precioBase;
-    //private Double igv;
-    //private Double preciototal;
     private Proveedor idProveedor;
     private Usuario idUsuario;
-    //private String serie;
-    //private String numDoc;
     private LocalDate fechaComp;
-    //private String tipoDoc;
     private LocalDate fechaReg;
     private List<CompraDetalle> detalleCompra;
 
     @Override
     public double calcularTotal() {
-        return getPrecioTotal()+getIgv();
+        return getPrecioBase() + getIgv();
     }
 }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:id="miContenedor" fx:controller="pe.edu.upeu.sysventas.controller.CompraController" styleClass="pantalla">
+   <children>
+      <VBox spacing="14.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="16.0">
+         <children>
+            <VBox spacing="2.0" minHeight="-Infinity">
+               <children>
+                  <Label styleClass="migas" text="Inicio  ›  Compras"/>
+                  <Label text="Registrar compra a proveedor" styleClass="titulo-pantalla">
+                     <font>
+                        <Font name="System Bold" size="14.0"/>
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <!-- Datos del proveedor y de la factura -->
+            <GridPane hgap="6.0" vgap="2.0" styleClass="tarjeta" minHeight="-Infinity">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="170.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="120.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="220.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="110.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="90.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="110.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="130.0"/>
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="22.0"/>
+                  <RowConstraints prefHeight="30.0"/>
+               </rowConstraints>
+               <children>
+                  <Label text="Buscar Proveedor (RUC o nombre)"/>
+                  <TextField fx:id="autocompProveedor" promptText="Escribe RUC o nombre" GridPane.rowIndex="1"/>
+                  <Label text="RUC / DNI" GridPane.columnIndex="1"/>
+                  <TextField fx:id="txtRucProveedor" promptText="Se llena solo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                  <Label text="Razón Social" GridPane.columnIndex="2"/>
+                  <TextField fx:id="txtRazonSocial" promptText="Se llena solo" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                  <Label text="Tipo Doc." GridPane.columnIndex="3"/>
+                  <ComboBox fx:id="cbxTipoDoc" promptText="Factura, Boleta o Guía" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                  <Label text="Serie" GridPane.columnIndex="4"/>
+                  <TextField fx:id="txtSerie" promptText="B001 (vacío = automático)" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                  <Label text="Número" GridPane.columnIndex="5"/>
+                  <TextField fx:id="txtNumDoc" promptText="00000123 (vacío = auto)" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                  <Label text="Fecha de compra" GridPane.columnIndex="6"/>
+                  <DatePicker fx:id="dpFechaComp" promptText="dd/mm/aaaa" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+               </children>
+            </GridPane>
+            <!-- Producto que se compra -->
+            <GridPane hgap="6.0" vgap="2.0" styleClass="tarjeta" minHeight="-Infinity">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="170.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="200.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="70.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="90.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="90.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="80.0"/>
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="22.0"/>
+                  <RowConstraints prefHeight="30.0"/>
+               </rowConstraints>
+               <children>
+                  <Label text="Buscar Producto"/>
+                  <TextField fx:id="autocompProducto" promptText="Escribe el nombre del producto" GridPane.rowIndex="1"/>
+                  <Label text="Producto" GridPane.columnIndex="1"/>
+                  <TextField fx:id="nombreProducto" promptText="Se llena solo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                  <Label text="Código" GridPane.columnIndex="2"/>
+                  <TextField fx:id="codigoPro" promptText="Código" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                  <Label text="Stock actual" GridPane.columnIndex="3"/>
+                  <TextField fx:id="stockPro" promptText="Stock" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                  <Label text="Cantidad" GridPane.columnIndex="4"/>
+                  <TextField fx:id="cantidadPro" promptText="Cantidad" onKeyReleased="#calcularPT" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                  <Label text="P. Compra" GridPane.columnIndex="5"/>
+                  <TextField fx:id="pcompraPro" promptText="Precio de compra" onKeyReleased="#calcularPT" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                  <Label text="P. Total" GridPane.columnIndex="6"/>
+                  <TextField fx:id="preTPro" promptText="Total" editable="false" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+                  <Button fx:id="btnRegCarrito" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registrarPCarrito" text="Add" GridPane.columnIndex="7" GridPane.rowSpan="2">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ic-carrito.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Agrega el producto a la lista de compra"/>
+                     </tooltip>
+                  </Button>
+               </children>
+            </GridPane>
+            <!-- Carrito de compra -->
+            <TableView fx:id="tableView" prefHeight="260.0" VBox.vgrow="ALWAYS" minHeight="220.0">
+               <placeholder>
+                  <Label styleClass="tabla-vacia" text="Aún no hay registros. Usa el formulario para agregar uno."/>
+               </placeholder>
+            </TableView>
+            <!-- Totales -->
+            <GridPane hgap="6.0" vgap="2.0" styleClass="tarjeta" minHeight="-Infinity">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="160.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="160.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="160.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="200.0"/>
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="22.0"/>
+                  <RowConstraints prefHeight="30.0"/>
+               </rowConstraints>
+               <children>
+                  <Label text="Base Imponible"/>
+                  <TextField fx:id="txtBaseImp" promptText="0.00" editable="false" GridPane.rowIndex="1"/>
+                  <Label text="IGV (18 %)" GridPane.columnIndex="1"/>
+                  <TextField fx:id="txtIgv" promptText="0.00" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                  <Label text="Total S/." GridPane.columnIndex="2"/>
+                  <TextField fx:id="txtImporteT" promptText="0.00" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                  <Button fx:id="btnRegCompra" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registrarCompra" text="Registrar Compra" GridPane.columnIndex="3" GridPane.rowSpan="2">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ic-compra.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Registra la compra y suma el stock"/>
+                     </tooltip>
+                  </Button>
+               </children>
+            </GridPane>
+            <Label fx:id="lbnMsg" maxWidth="1.7976931348623157E308" text="" minHeight="-Infinity"/>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

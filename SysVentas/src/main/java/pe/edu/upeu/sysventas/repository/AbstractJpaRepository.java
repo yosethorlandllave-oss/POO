@@ -8,17 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractJpaRepository<T,ID>  extends SqlHelper<T>
-        implements ICrudGenericoRepository<T,ID>{
-
+public abstract class AbstractJpaRepository<T, ID> extends SqlHelper <T>
+        implements ICrudGenericoRepository <T , ID> {
     protected abstract String getTableName();
+
     protected abstract String getPkColumn();
+
     protected abstract T insert(Connection connection, T entity) throws SQLException;
+
     protected abstract T updateRow(Connection connection, T entity) throws SQLException;
 
     @Override
     public T save(T entity) {
-        try(Connection conn = openConnection()) {
+        try (Connection conn = openConnection()) {
             conn.setAutoCommit(false);
             try {
                 T result = insert(conn, entity);
@@ -35,7 +37,7 @@ public abstract class AbstractJpaRepository<T,ID>  extends SqlHelper<T>
 
     @Override
     public T update(T entity) {
-        try(Connection conn = openConnection()) {
+        try (Connection conn = openConnection()) {
             conn.setAutoCommit(false);
             try {
                 T result = updateRow(conn, entity);
@@ -49,28 +51,29 @@ public abstract class AbstractJpaRepository<T,ID>  extends SqlHelper<T>
             throw new RuntimeException("Error al actualizar: " + e.getMessage(), e);
         }
     }
+
     @Override
     public Optional<T> findById(ID id) {
         String sql = "SELECT * FROM " + getTableName() + " WHERE " + getPkColumn() + " = ?";
         return executeQueryOne(sql, id);
     }
+
     @Override
     public List<T> findAll() {
         String sql = "SELECT * FROM " + getTableName();
         return executeQuery(sql);
     }
+
     @Override
     public void deleteById(ID id) {
         String sql = "DELETE FROM " + getTableName() + " WHERE " + getPkColumn() + " = ?";
         executeUpdateStandalone(sql, id);
     }
+
     @Override
     public boolean existsById(ID id) {
         String sql = "SELECT 1 FROM " + getTableName() + " WHERE " + getPkColumn() + " = ?";
         return executeExists(sql, id);
     }
-
-
-
 
 }

@@ -1,36 +1,326 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  fx:id="bp"  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.MainGuiController">
+<!-- Ventana principal con estilo de tienda en línea:
+     cabecera blanca (logo, Categorías, buscador, usuario), barra gris, barra negra de categorías,
+     y la pestaña Inicio con banner de promociones, tarjetas y productos. -->
+<BorderPane fx:id="bp" prefHeight="700.0" prefWidth="1200.0" styleClass="inicio-fondo" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysventas.controller.MainGuiController">
    <top>
-      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                    <MenuItem fx:id="menuItem1" mnemonicParsing="false" text="Producto" />
-                    <MenuItem fx:id="menuItem2" mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <!-- 1. Cabecera blanca -->
+            <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="cabecera-web">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logo-coolbox.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label styleClass="marca-texto" text="Coolbox" />
+                              <Label styleClass="marca-sub" text="Tienda de tecnología · Juliaca" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnCategorias" mnemonicParsing="false" onAction="#mostrarCategorias" styleClass="btn-categorias" text="Categorías">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-menu-blanco.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Todas las pantallas a las que puedes entrar" />
+                     </tooltip>
+                  </Button>
+                  <StackPane HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="txtBuscar" promptText="¿Qué estás buscando?" styleClass="buscador" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" mouseTransparent="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+                           <image>
+                              <Image url="@../img/ui-buscar-gris.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets right="14.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER_LEFT" spacing="8.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-usuario.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label fx:id="lblUsuario" styleClass="usuario-nombre" text="Hola" />
+                              <Label fx:id="lblPerfil" styleClass="usuario-perfil" text="Perfil" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Region prefHeight="34.0" styleClass="separador-vertical" />
+                  <Button fx:id="btnCarrito" mnemonicParsing="false" onAction="#irAVenta" styleClass="btn-icono">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-carrito.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Nueva venta (carrito)" />
+                     </tooltip>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cerrarSesion" styleClass="btn-icono">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-salir.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Cerrar sesión" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </HBox>
+
+            <!-- 2. Barra gris: ubicación y enlaces -->
+            <HBox alignment="CENTER_LEFT" spacing="4.0" styleClass="nav-web">
+               <children>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/ui-pin.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="nav-ubicacion" text="Juliaca, Puno" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#filtrarStarlink" styleClass="nav-link" text="Starlink" />
+                  <Button mnemonicParsing="false" onAction="#filtrarApple" styleClass="nav-link" text="Apple" />
+                  <MenuButton fx:id="mbOfertas" mnemonicParsing="false" styleClass="nav-link" text="Ofertas">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-oferta.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuButton>
+                  <Button mnemonicParsing="false" onAction="#verSoloOfertas" styleClass="nav-link" text="Liquidación" />
+                  <Button mnemonicParsing="false" onAction="#verTiendas" styleClass="nav-link,nav-link-rojo" text="Tiendas">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-tienda.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#verAyuda" styleClass="nav-link" text="Ayuda">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/ui-ayuda.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+
+            <!-- 3. Barra negra de categorías: el menú del perfil se agrega aquí desde el controlador -->
+            <HBox fx:id="barraCategorias" alignment="CENTER_LEFT" minHeight="48.0" styleClass="barra-categorias">
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" styleClass="franja-roja" text="¡Lo mejor en tecnología!" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </top>
    <center>
-      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab text="Principal" />
-        </tabs>
+      <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER">
+         <tabs>
+            <Tab fx:id="tabPrincipal" closable="false" text="Inicio">
+               <content>
+                  <ScrollPane fx:id="scrollInicio" fitToWidth="true" hbarPolicy="NEVER">
+                     <content>
+                        <VBox fx:id="contenidoInicio" spacing="26.0" styleClass="inicio-fondo">
+                           <children>
+                              <!-- Banner de promociones (se llena desde la tabla promocion) -->
+                              <StackPane fx:id="hero" styleClass="hero" />
+
+                              <!-- Accesos rápidos según el perfil -->
+                              <VBox spacing="12.0">
+                                 <children>
+                                    <Label styleClass="seccion-titulo" text="¿Qué quieres hacer hoy?" />
+                                    <FlowPane fx:id="panelAccesos" hgap="14.0" vgap="14.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" right="40.0" />
+                                 </VBox.margin>
+                              </VBox>
+
+                              <!-- Lo último / Ofertas bombas / Lo más vendido -->
+                              <HBox fx:id="filaDestacados" alignment="CENTER" spacing="18.0">
+                                 <VBox.margin>
+                                    <Insets left="40.0" right="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+
+                              <!-- Productos de la base de datos -->
+                              <VBox fx:id="seccionProductos" spacing="12.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="tarjeta">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <Label styleClass="seccion-titulo" text="Destacados en Coolbox" />
+                                                <Label fx:id="lblResultados" styleClass="seccion-sub" text="0 resultados" />
+                                             </children>
+                                          </VBox>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#verTodos" styleClass="btn-ver-todo" text="Ver todos" />
+                                          <Button mnemonicParsing="false" onAction="#verSoloOfertas" text="Solo ofertas" />
+                                       </children>
+                                    </HBox>
+                                    <FlowPane fx:id="gridProductos" hgap="14.0" vgap="14.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" right="40.0" />
+                                 </VBox.margin>
+                              </VBox>
+
+                              <!-- Franja roja de beneficios -->
+                              <HBox alignment="CENTER_LEFT" spacing="34.0" styleClass="franja-beneficios">
+                                 <children>
+                                    <VBox spacing="4.0">
+                                       <children>
+                                          <Label styleClass="beneficio-titulo" text="Innovación y tecnología en Coolbox" />
+                                          <Label styleClass="beneficio-texto" text="Lo último en gadgets y accesorios está aquí, en Juliaca." />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <VBox alignment="CENTER" spacing="6.0">
+                                       <children>
+                                          <StackPane styleClass="beneficio-circulo">
+                                             <children>
+                                                <ImageView fitHeight="28.0" fitWidth="28.0" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/ui-tienda-blanco.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <Label styleClass="beneficio-texto" text="Atención en tienda" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="6.0">
+                                       <children>
+                                          <StackPane styleClass="beneficio-circulo">
+                                             <children>
+                                                <ImageView fitHeight="28.0" fitWidth="28.0" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/ui-seguro-blanco.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <Label styleClass="beneficio-texto" text="Compra segura" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" spacing="6.0">
+                                       <children>
+                                          <StackPane styleClass="beneficio-circulo">
+                                             <children>
+                                                <ImageView fitHeight="28.0" fitWidth="28.0" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/ui-boleta-blanco.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <Label styleClass="beneficio-texto" text="Boleta al instante" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" right="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+
+                              <!-- Pie de página -->
+                              <VBox spacing="18.0" styleClass="pie">
+                                 <children>
+                                    <HBox spacing="60.0">
+                                       <children>
+                                          <VBox spacing="8.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <ImageView fitHeight="34.0" fitWidth="34.0" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/logo-coolbox.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label styleClass="pie-marca" text="Coolbox" />
+                                                   </children>
+                                                </HBox>
+                                                <Label styleClass="pie-titulo" text="Contáctanos" />
+                                                <Label styleClass="pie-texto" text="Jr. San Román 123 - Juliaca, Puno" />
+                                                <Label styleClass="pie-texto" text="Tel: 951 782 520" />
+                                                <Label styleClass="pie-texto" text="Lun - Sáb 9:00 am a 8:00 pm" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="8.0">
+                                             <children>
+                                                <Label styleClass="pie-titulo" text="Sobre nosotros" />
+                                                <Label styleClass="pie-texto" text="¿Quiénes somos?" />
+                                                <Label styleClass="pie-texto" text="Compra fácil y segura" />
+                                                <Label styleClass="pie-texto" text="Métodos de pago" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="8.0">
+                                             <children>
+                                                <Label styleClass="pie-titulo" text="Te informamos" />
+                                                <Label styleClass="pie-texto" text="Nuestra tienda" />
+                                                <Label styleClass="pie-texto" text="Certificado de garantía" />
+                                                <Label styleClass="pie-texto" text="Cambios y devoluciones" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="8.0">
+                                             <children>
+                                                <Label styleClass="pie-titulo" text="Servicios al cliente" />
+                                                <Label styleClass="pie-texto" text="Boleta electrónica" />
+                                                <Label styleClass="pie-texto" text="Ventas corporativas" />
+                                                <Label styleClass="pie-texto" text="Disponibilidad de productos" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Separator />
+                                    <Label styleClass="pie-copy" text="© 2026 Coolbox Juliaca · Proyecto de POO - Grupo G2 · Universidad Peruana Unión, Campus Juliaca" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+         </tabs>
       </TabPane>
    </center>
 </BorderPane>

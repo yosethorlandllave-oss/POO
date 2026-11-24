@@ -12,13 +12,17 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
+public class ProductoRepository extends AbstractJpaRepository<Producto,Long > {
 
     @Override
-    protected String getTableName() {return "producto";}
+    protected String getTableName() {
+        return "producto";
+    }
 
     @Override
-    protected String getPkColumn() {return "id_producto";}
+    protected String getPkColumn() {
+        return "id_producto";
+    }
 
     private static final String SELECT_JOIN =
             "SELECT p.*, c.nombre AS cat_nombre, m.nombre AS mar_nombre, " +
@@ -27,9 +31,13 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
                     "JOIN marca m ON p.id_marca = m.id_marca " +
                     "JOIN unid_medida u ON p.id_unidad = u.id_unidad ";
 
-    @Override public List<Producto> findAll() { return executeQuery(SELECT_JOIN); }
+    @Override
+    public List<Producto> findAll() {
+        return executeQuery(SELECT_JOIN);
+    }
 
-    @Override public Optional<Producto> findById(Long id) {
+    @Override
+    public Optional<Producto> findById(Long id) {
         return executeQueryOne(SELECT_JOIN + "WHERE p.id_producto = ?", id);
     }
 
@@ -56,12 +64,10 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
                 .build();
     }
 
-
     @Override
     protected Producto insert(Connection conn, Producto e) throws SQLException {
         long id = executeInsertGetKey(conn,
-                "INSERT INTO producto(nombre,pu,puold,utilidad,stock,stockold,id_categoria,id_marca,id_unidad, tipo_producto) " +
-                        " VALUES(?,?,?,?,?,?,?,?,?, ?)",
+                "INSERT INTO producto(nombre,pu,puold,utilidad,stock,stockold,id_categoria,id_marca,id_unidad, tipo_producto) VALUES(?,?,?,?,?,?,?,?,?, ?)",
                 e.getNombre(),
                 e.getPu(),
                 e.getPuold(),
@@ -73,8 +79,10 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
                 e.getIdUnidad().getIdUnidad(),
                 e.getTipoProducto().name()
         );
-        e.setIdProducto(id); return e;
+        e.setIdProducto(id);
+        return e;
     }
+
     @Override
     protected Producto updateRow(Connection conn, Producto e) throws SQLException {
         executeUpdate(conn,
@@ -92,12 +100,24 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
                 e.getIdProducto());
         return e;
     }
+
+    /**
+     * Control de stock (Eydam): suma la cantidad al stock del producto.
+     * Compra -> cantidad positiva (entra mercadería). Venta -> cantidad negativa (sale mercadería).
+     * Antes de cambiarlo, guarda el valor actual en stockold.
+     */
+    public void actualizarStock(Long idProducto, double cantidad) {
+        executeUpdateStandalone(
+                "UPDATE producto SET stockold = stock, stock = stock + ? WHERE id_producto = ?",
+                cantidad, idProducto);
+    }
+
     public List<Producto> listAutoCompletProducto(String filter) {
         return executeQuery(SELECT_JOIN + "WHERE p.nombre LIKE ?", filter);
     }
+
     public List<Producto> listProductoMarca(Integer filter) {
         return executeQuery(SELECT_JOIN + "WHERE p.id_marca = ?", filter);
+
     }
-
-
 }

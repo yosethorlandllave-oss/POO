@@ -16,7 +16,7 @@ public class Toast {
     public static void showToast(Stage ownerStage, String message, int durationInMillis, double x, double y) {
         // Crear una etiqueta con el mensaje del toast
         Label label = new Label(message);
-        label.setStyle("-fx-background-color: #00FF99; -fx-text-fill: black; "
+        label.setStyle("-fx-background-color: #1A1A1A; -fx-text-fill: #FFFFFF; -fx-font-size: 13px; "
                 + "-fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         label.setOpacity(0);  // Inicialmente invisible
 
